@@ -2,7 +2,7 @@ version: "2"
 
 services:
   mariadb:
-    image: wodby/mariadb:10.1-2.1.0
+    image: wodby/mariadb:10.1
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: wordpress
@@ -13,10 +13,10 @@ services:
 #      - /path/to/mariadb/data/on/host:/var/lib/mysql # I want to manage volumes manually.
 
   php:
-    image: wodby/wordpress:4-7.1-2.1.0
-#    image: wodby/wordpress:4-7.0-2.1.0
-#    image: wodby/wordpress-php:7.0-2.1.0
-#    image: wodby/wordpress-php:7.1-2.1.0
+    image: wodby/wordpress:4-7.1
+#    image: wodby/wordpress:4-7.0
+#    image: wodby/wordpress-php:7.0
+#    image: wodby/wordpress-php:7.1
     environment:
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
       # PHP_XDEBUG: 1
@@ -28,7 +28,7 @@ services:
 #      - d4d-unison-sync:/var/www/html # Docker-sync for macOS users
 
   nginx:
-    image: wodby/wordpress-nginx:4-1.10-2.1.0
+    image: wodby/wordpress-nginx:4-1.10
     environment:
       NGINX_STATIC_CONTENT_OPEN_FILE_CACHE: "off"
       NGINX_ERROR_LOG_LEVEL: debug
@@ -45,7 +45,7 @@ services:
       - 'traefik.frontend.rule=Host:wp.docker.localhost'
 
 #  varnish:
-#    image: wodby/wordpress-varnish:4.1-2.1.0
+#    image: wodby/wordpress-varnish:4.1
 #    depends_on:
 #      - nginx
 #    environment:
@@ -58,7 +58,7 @@ services:
 #      - 'traefik.frontend.rule=Host:varnish.wp.docker.localhost'
 
 #  redis:
-#    image: wodby/redis:3.2-2.1.0
+#    image: wodby/redis:3.2
 
 #  pma:
 #    image: phpmyadmin/phpmyadmin
