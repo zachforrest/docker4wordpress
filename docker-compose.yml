@@ -3,6 +3,7 @@ version: "2"
 services:
   mariadb:
     image: wodby/mariadb:10.1-2.3.5
+#Pull images from cloud repository
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: wordpress
@@ -54,24 +55,6 @@ services:
       - 'traefik.backend=nginx'
       - 'traefik.port=80'
       - 'traefik.frontend.rule=Host:wp.docker.localhost'
-
-#  apache:
-#    image: wodby/php-apache:2.4-2.0.0
-#    depends_on:
-#      - php
-#    environment:
-#      APACHE_LOG_LEVEL: debug
-#      APACHE_BACKEND_HOST: php
-#      APACHE_SERVER_ROOT: /var/www/html
-#    volumes:
-#      - codebase:/var/www/html
-## Options for macOS users (http://docs.docker4wordpress.org/en/latest/macos)
-##      - codebase:/var/www/html:cached # User-guided caching
-##      - docker-sync:/var/www/html # Docker-sync
-#    labels:
-#      - 'traefik.backend=apache'
-#      - 'traefik.port=80'
-#      - 'traefik.frontend.rule=Host:wp.docker.localhost'
 
 #  varnish:
 #    image: wodby/wordpress-varnish:4.1-2.2.0
